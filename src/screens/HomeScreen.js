@@ -20,7 +20,6 @@ import ImgToBase64 from 'react-native-image-base64';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const HomeScreen = () => {
-  const [base64, setBase64] = useState('');
   const [loading, setLoading] = useState(false);
 
   const myCustomShare = async (image) => {
@@ -30,25 +29,13 @@ const HomeScreen = () => {
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         const imgURI = Image.resolveAssetSource(image).uri;
+        let p1 = await ImgToBase64.getBase64String(imgURI);
 
-        ImgToBase64.getBase64String(imgURI)
-          .then((base64String) => setBase64(base64String))
-          .then(() => Share.open(shareOptions))
-          .catch((err) => console.log(err));
-
-         let shareOptions = {
-          url: `data:image/png;base64,${base64}`,
+        const shareOptions = {
+          url: `data:image/png;base64,${p1}`,
         };
-      
-        /* let shareOptions;
-        ImgToBase64.getBase64String(imgURI)
-          .then((base64String) => setBase64(base64String))
-          .catch((err) => console.log(err));*/
 
-        /* const shareOptions = {
-          url: `data:image/png;base64,${base64}`,
-        };
-        const ShareImage = await Share.open(shareOptions);*/
+        const ShareImage = await Share.open(shareOptions);
       } else {
         console.log('Camera permission denied');
       }
@@ -56,7 +43,6 @@ const HomeScreen = () => {
       console.log('Error => ', error);
     }
   };
-
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       {loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
