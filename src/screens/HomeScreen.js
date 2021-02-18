@@ -15,6 +15,7 @@ import {
 import cumaData from '../../assets/data/cumaMsgData';
 import Share from 'react-native-share';
 import ImgToBase64 from 'react-native-image-base64';
+
 //import base64 from 'react-native-base64';
 
 const windowWidth = Dimensions.get('window').width;
@@ -46,6 +47,7 @@ const HomeScreen = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       {loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
+     
       <FlatList
         data={cumaData}
         keyExtractor={(item) => item.id.toString()}
@@ -63,7 +65,7 @@ const HomeScreen = () => {
               <TouchableOpacity
                 onPress={() => myCustomShare(item.image)}
                 style={styles.shareBtn}>
-                <Text style={{fontSize: 20, color: 'white'}}>Paylaş</Text>
+                <Text style={{fontSize: 20, color: '#FFF'}}>Paylaş</Text>
               </TouchableOpacity>
             </View>
           );
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     borderColor: '#2a9d8f',
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: '#2a9d8f',
+    backgroundColor: '#006C35',
     marginTop: 5,
   },
 });
