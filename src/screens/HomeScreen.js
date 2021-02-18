@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,9 +8,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  Button,
   PermissionsAndroid,
-  ActivityIndicator,
 } from 'react-native';
 import cumaData from '../../assets/data/cumaMsgData';
 import Share from 'react-native-share';
@@ -21,8 +19,6 @@ import ImgToBase64 from 'react-native-image-base64';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const HomeScreen = () => {
-  const [loading, setLoading] = useState(false);
-
   const myCustomShare = async (image) => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -45,11 +41,18 @@ const HomeScreen = () => {
     }
   };
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {loading ? <ActivityIndicator size="large" color="#00ff00" /> : null}
-     
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#a58e65',
+      }}>
+      {/*loading ? <ActivityIndicator size="large" color="#00ff00" /> : null*/}
+
       <FlatList
         data={cumaData}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => {
           return (
@@ -58,7 +61,8 @@ const HomeScreen = () => {
                 marginVertical: 5,
                 padding: 10,
                 borderRadius: 10,
-                backgroundColor: 'white',
+                borderColor: '#ded4a0',
+                backgroundColor: '#ded4a0',
                 elevation: 3,
               }}>
               <Image style={styles.image} source={item.image} />
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     width: windowWidth * 0.8,
     height: 300,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   shareBtn: {
     width: windowWidth * 0.8,
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#2a9d8f',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: '#006C35',
     marginTop: 5,
   },
