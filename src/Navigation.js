@@ -12,9 +12,11 @@ const Stack = createStackNavigator();
 
 function DrawerRoutes() {
   return (
-    <Drawer.Navigator initialRouteName="Cuma Mesajları" drawerStyle={{
-      backgroundColor: '#ded4a0',
-    }}>
+    <Drawer.Navigator
+      initialRouteName="Cuma Mesajları"
+      drawerStyle={{
+        backgroundColor: '#ded4a0',
+      }}>
       <Drawer.Screen name="Resimli Cuma Mesajları" component={HomeScreen} />
       <Drawer.Screen name="Hayırlı Günler Mesajları" component={Detail} />
       <Drawer.Screen name="Berat Kandili Mesajları" component={Detail} />

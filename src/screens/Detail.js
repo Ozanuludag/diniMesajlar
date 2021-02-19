@@ -56,7 +56,7 @@ const Detail = ({route}) => {
                 marginTop: 5,
                 marginHorizontal: 2,
                 backgroundColor: '#ded4a0',
-                padding:5
+                padding: 5,
               }}>
               <Text style={{fontSize: 18, marginHorizontal: 5}}>
                 {item.id}-) {item.mesaj}
